@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050607">
+  <title>taskboard — concord demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">taskboard<span class="muted"> / concord demo</span></span>
+    <span class="meta"><span class="dot dot-live"></span>main · <span id="count">0 tasks</span></span>
+  </header>
+
+  <main>
+    <h1>Small tasks.<br><span class="accent">Clear state.</span></h1>
+    <p class="lead">A tiny full stack board, used to test how coding agents share work.</p>
+
+    <form id="add-form">
+      <span class="prompt">›</span>
+      <input id="title" placeholder="describe a task…" autocomplete="off" required>
+      <button type="submit">add →</button>
+    </form>
+
+    <ul id="list"></ul>
+    <p id="empty" class="muted" hidden>no tasks yet — add one above.</p>
+
+    <p class="cmd"><span class="muted">$</span> npm start</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

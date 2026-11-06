@@ -1,0 +1,14 @@
+{
+  "name": "concord-demo-taskboard",
+  "version": "0.1.0",
+  "description": "A tiny task board used as a playground to test Concord MCP with two coding agents.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

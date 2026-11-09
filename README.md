@@ -130,16 +130,6 @@ Both depend on the same API contract and both edit `docs/API.md`, which is where
 5. When both are done, hand off to the reviewer prompt and run `npm test`.
 6. Write down what happened in [`docs/EXPERIMENT_LOG.md`](docs/EXPERIMENT_LOG.md).
 
-## Results
-
-> _To be completed after running the experiment. Only write what you actually observed._
-
-- Setup: _what worked / what was unclear_
-- Overlap detection: _did Concord warn about the shared files? when?_
-- Messaging between agents: _what was exchanged?_
-- Handoff / review: _was the evidence useful?_
-- Bugs or rough edges found: _link the issues you opened, if any_
-
 ## About
 
 Built by [Mame Fama Fall](https://mamefama-rgb.github.io/MameFamaFall.github.io/), Master 2 Software Engineering student at ESP/UCAD, Dakar.

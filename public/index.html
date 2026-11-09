@@ -24,8 +24,23 @@
     <form id="add-form">
       <span class="prompt">›</span>
       <input id="title" placeholder="describe a task…" autocomplete="off" required>
+      <select id="priority" name="priority" aria-label="Task priority">
+        <option value="low">low</option>
+        <option value="normal" selected>normal</option>
+        <option value="high">high</option>
+      </select>
       <button type="submit">add →</button>
     </form>
+
+    <div class="filter-bar">
+      <label for="filter-priority" class="filter-label">filter priority:</label>
+      <select id="filter-priority" name="filter-priority" aria-label="Filter tasks by priority">
+        <option value="">all</option>
+        <option value="low">low</option>
+        <option value="normal">normal</option>
+        <option value="high">high</option>
+      </select>
+    </div>
 
     <ul id="list"></ul>
     <p id="empty" class="muted" hidden>no tasks yet — add one above.</p>

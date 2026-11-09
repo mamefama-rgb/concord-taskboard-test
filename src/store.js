@@ -2,12 +2,15 @@
 let tasks = [];
 let nextId = 1;
 
-function list() {
+function list(filter) {
+  if (filter && filter.priority) {
+    return tasks.filter((t) => t.priority === filter.priority);
+  }
   return tasks;
 }
 
-function create({ title }) {
-  const task = { id: nextId++, title, done: false };
+function create({ title, priority = "normal" }) {
+  const task = { id: nextId++, title, done: false, priority };
   tasks.push(task);
   return task;
 }
@@ -17,6 +20,7 @@ function update(id, changes) {
   if (!task) return null;
   if (typeof changes.title === "string") task.title = changes.title;
   if (typeof changes.done === "boolean") task.done = changes.done;
+  if (typeof changes.priority === "string") task.priority = changes.priority;
   return task;
 }
 

@@ -2,6 +2,8 @@ const list = document.getElementById("list");
 const empty = document.getElementById("empty");
 const form = document.getElementById("add-form");
 const titleInput = document.getElementById("title");
+const prioritySelect = document.getElementById("priority");
+const filterPriority = document.getElementById("filter-priority");
 const count = document.getElementById("count");
 
 async function api(url, options) {
@@ -24,13 +26,21 @@ function render(tasks) {
     checkbox.type = "checkbox";
     checkbox.checked = task.done;
     checkbox.addEventListener("change", async () => {
-      await api(`/api/tasks/${task.id}`, { method: "PATCH", body: JSON.stringify({ done: checkbox.checked }) });
+      await api(`/api/tasks/${task.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ done: checkbox.checked }),
+      });
       load();
     });
 
     const title = document.createElement("span");
     title.className = "title";
     title.textContent = task.title;
+
+    const priority = task.priority || "normal";
+    const priorityBadge = document.createElement("span");
+    priorityBadge.className = `priority priority-${priority}`;
+    priorityBadge.textContent = priority;
 
     const tag = document.createElement("span");
     tag.className = "tag";
@@ -45,19 +55,37 @@ function render(tasks) {
       load();
     });
 
-    li.append(checkbox, title, tag, del);
+    li.append(checkbox, title, priorityBadge, tag, del);
     list.append(li);
   }
 }
 
 async function load() {
-  render(await api("/api/tasks"));
+  const priority = filterPriority ? filterPriority.value : "";
+  const query = priority ? `?priority=${encodeURIComponent(priority)}` : "";
+  render(await api(`/api/tasks${query}`));
+}
+
+if (filterPriority) {
+  filterPriority.addEventListener("change", () => {
+    load();
+  });
 }
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  await api("/api/tasks", { method: "POST", body: JSON.stringify({ title: titleInput.value }) });
+  const priority = prioritySelect ? prioritySelect.value : "normal";
+  await api("/api/tasks", {
+    method: "POST",
+    body: JSON.stringify({
+      title: titleInput.value,
+      priority,
+    }),
+  });
   titleInput.value = "";
+  if (prioritySelect) {
+    prioritySelect.value = "normal";
+  }
   load();
 });
 
